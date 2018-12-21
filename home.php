@@ -1,7 +1,5 @@
 <?php 
 session_start();
-require 'php/functions.php';
-
   if (!isset($_SESSION['login'])) {
   	$_SESSION['msg'] = "You must log in first";
   	header('location: login.php');
@@ -34,7 +32,7 @@ require 'php/functions.php';
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Free Music</a>
+            <a class="navbar-brand" href="home.php">Free Music</a>
         </div>
     
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,19 +49,19 @@ require 'php/functions.php';
                     <li><a href="#">Link</a></li>
                 </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="">Login</a></li>
-
-                <ul class="nav navbar-nav navbar-right center">
-                <li>
-                <?php  if (isset($_SESSION['login'])) : ?>
-    	            <p>Welcome <strong><?php echo $_SESSION['login']; ?></strong></p>
-                <?php endif ?>
-                </li>
-
+                <?php
+                if($_SESSION['login']==true)
+                { 
+                    echo $_SESSION["login"];
+                    echo '<a href="php/logout.php"><span>   Logout</span></a></li>';
+                }
+                elseif($_SESSION['logged']==false)
+                {
+                    echo '<a href="registerform.html"><span>Login/Register</span></a></li>';
+                }
+                ?>
             </ul>
-                <li><a href="php/logout.php">Logout</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
+        </div>
     </nav>
 
     <h2>Responsive Two Column Layout</h2>
